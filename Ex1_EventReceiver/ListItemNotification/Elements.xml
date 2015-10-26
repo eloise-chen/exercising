@@ -1,0 +1,23 @@
+﻿<!-- Created by VS when I created the event receiver, commented out to try hooking the class to the feature event receiver
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Receivers ListUrl="Lists/Existing"> <!-- Changed ListTemplateId="3100"  to a path to reference one particular list --><!--
+      <Receiver>
+        <Name>ListItemNotificationItemAdded</Name>
+        <Type>ItemAdded</Type>
+        <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+        <Class>Ex1_EventReceiver.ListItemNotification.ListItemNotification</Class>
+        <SequenceNumber>10000</SequenceNumber>
+      </Receiver>
+      <Receiver>
+        <Name>ListItemNotificationItemUpdated</Name>
+        <Type>ItemUpdated</Type>
+        <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+        <Class>Ex1_EventReceiver.ListItemNotification.ListItemNotification</Class>
+        <SequenceNumber>10000</SequenceNumber>
+      </Receiver>
+  </Receivers>
+</Elements>
+-->
