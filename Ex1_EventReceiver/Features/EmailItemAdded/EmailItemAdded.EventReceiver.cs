@@ -22,7 +22,7 @@ namespace Ex1_EventReceiver.Features.EmailItemAdded
             SPWeb web = properties.Feature.Parent as SPWeb;
             SPList list = web.Lists["Existing"];
 
-            if (Ex1_EventReceiver.ListItemNotification.ListItemNotification)
+            if (ListItemNotification)
             {
                 Console.Out.WriteLine("Added an item!");
             }
