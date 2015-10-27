@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using Microsoft.SharePoint;
+using System.Reflection;
 
 namespace Ex1_EventReceiver.Features.EmailItemAdded
 {
@@ -16,16 +17,29 @@ namespace Ex1_EventReceiver.Features.EmailItemAdded
     public class EmailItemAddedEventReceiver : SPFeatureReceiver
     {
         // Uncomment the method below to handle the event raised after a feature has been activated.
-
+        // QUESTION: Why do JavaScript errors appear when items added, whether Existing or other unrelated lists
         public override void FeatureActivated(SPFeatureReceiverProperties properties)
         {
             SPWeb web = properties.Feature.Parent as SPWeb;
             SPList list = web.Lists["Existing"];
+            string assembly = Assembly.GetExecutingAssembly().FullName;
+            string cls = "Ex1_EventReceiver.ListItemNotification.ListItemNotification";
 
-            if (ListItemNotification)
-            {
-                Console.Out.WriteLine("Added an item!");
-            }
+            // Bind the event receiver definition to the list and define the receiver properties
+            SPEventReceiverDefinition defn = list.EventReceivers.Add();
+            defn.Type = SPEventReceiverType.ItemAdded;
+            defn.Synchronization = SPEventReceiverSynchronization.Asynchronous;
+            defn.Class = cls;
+            defn.Assembly = assembly;
+            defn.Update();
+
+            SPEventReceiverDefinition defn2 = list.EventReceivers.Add();
+            defn2.Type = SPEventReceiverType.ItemUpdated;
+            defn2.Synchronization = SPEventReceiverSynchronization.Asynchronous;
+            defn2.Class = cls;
+            defn2.Assembly = assembly;
+            defn2.Update();
+            
         }
 
 
